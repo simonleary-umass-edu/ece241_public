@@ -6,7 +6,7 @@ from timeit import Timer
 def test_counting_sort():
     global alist
     global largest
-    global sorted1 # this is for testing purposes, delete this line
+    global sorted1
     sorted1 = counting_sort(alist, largest)
 
 def counting_sort(alist, largest):
@@ -34,7 +34,7 @@ def counting_sort(alist, largest):
 def test_my_counting_sort():
     global alist
     global largest
-    global sorted2 # this is for testing purposes, delete this line
+    global sorted2
     sorted2 = my_counting_sort(alist, largest)
 
 def my_counting_sort(alist, largest):
@@ -63,9 +63,9 @@ if __name__ == "__main__":
         sorted1 = []
         sorted2 = []
         print('sorting the same 1000000 element list of integers from 0 to 99:')
-        timer = Timer('test_counting_sort()', setup="from __main__ import test_counting_sort",globals=globals())
+        timer = Timer('test_counting_sort()', setup="from __main__ import test_counting_sort", globals=globals())
         print("   counting_sort:",timer.timeit(number=1))
-        timer2 = Timer('test_my_counting_sort()', setup="from __main__ import test_my_counting_sort",globals=globals())
+        timer2 = Timer('test_my_counting_sort()', setup="from __main__ import test_my_counting_sort", globals=globals())
         print("my_counting_sort:",timer2.timeit(number=1))
         if sorted1 == sorted2:
             print("the two sorted arrays are equal!")
