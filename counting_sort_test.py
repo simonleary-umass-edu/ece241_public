@@ -53,6 +53,6 @@ if __name__ == "__main__":
         print('sorting the same 1000000 element list of integers from 0 to 99:')
         timer = Timer('counting_sort()', setup="from __main__ import counting_sort",globals=globals())
         print("   counting_sort:",timer.timeit(number=1))
-        timer2 = Timer('counting_sort()', setup="from __main__ import counting_sort",globals=globals())
+        timer2 = Timer('my_counting_sort()', setup="from __main__ import my_counting_sort",globals=globals())
         print("my_counting_sort:",timer2.timeit(number=1))
         input("press enter to run again, ctrl+c to quit (ctrl + f2 in PyCharm)")
