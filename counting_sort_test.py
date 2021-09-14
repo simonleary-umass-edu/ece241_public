@@ -2,7 +2,7 @@ import random
 from timeit import Timer
 
 def counting_sort():
-    # alist and largest are defined globally
+    # alist and largest are defined globally so that both algorithms can use the same set
     c = [0] * (largest + 1)
     for i in range(len(alist)):
         c[alist[i]] = c[alist[i]] + 1
@@ -19,19 +19,21 @@ def counting_sort():
     return result
 
 def my_counting_sort():
-    # alist and largest are defined globally
+    # alist and largest are defined globally so that both algorithms can use the same set
     c = [0] * (largest + 1)
     for i in range(len(alist)):
         c[alist[i]] = c[alist[i]] + 1
 
     result = [0] * (len(alist))
-    filledIndex = 0
+    nextUnfilledIndex = 0 # this is incremented as the empty result is filled outqw
+    # index i of c is the number of elements from alist with the value i
+    # however many that is, add that many elements with the value i to the result
     for i in range(len(c)):
         value = i
         quantity = c[i]
         for j in range(quantity):
-            result[filledIndex] = value
-            filledIndex += 1
+            result[nextUnfilledIndex] = value
+            nextUnfilledIndex += 1
     return result
 
 if __name__ == "__main__":
