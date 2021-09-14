@@ -1,7 +1,10 @@
+# Simon Leary
+
 import random
 from timeit import Timer
 
 def counting_sort():
+    # copied from https://gist.github.com/mikezink/9fc56a20cebc9076a4f180de3c60b094
     # alist and largest are defined globally so that both algorithms can use the same set
     c = [0] * (largest + 1)
     for i in range(len(alist)):
