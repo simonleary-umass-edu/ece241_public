@@ -3,9 +3,14 @@
 import random
 from timeit import Timer
 
-def counting_sort():
+def test_counting_sort():
+    global alist
+    global largest
+    global sorted1 # this is for testing purposes, delete this line
+    sorted1 = counting_sort(alist, largest)
+
+def counting_sort(alist, largest):
     # copied from https://gist.github.com/mikezink/9fc56a20cebc9076a4f180de3c60b094
-    # alist and largest are defined globally so that both algorithms can use the same set
     c = [0] * (largest + 1)
     for i in range(len(alist)):
         c[alist[i]] = c[alist[i]] + 1
@@ -24,11 +29,15 @@ def counting_sort():
     for j in range(len(alist) - 1, -1, -1):
         result[c[alist[j]] - 1] = alist[j]
         c[alist[j]] = c[alist[j]] - 1
-
     return result
 
-def my_counting_sort():
-    # alist and largest are defined globally so that both algorithms can use the same set
+def test_my_counting_sort():
+    global alist
+    global largest
+    global sorted2 # this is for testing purposes, delete this line
+    sorted2 = my_counting_sort(alist, largest)
+
+def my_counting_sort(alist, largest):
     c = [0] * (largest + 1)
     for i in range(len(alist)):
         c[alist[i]] = c[alist[i]] + 1
@@ -50,9 +59,16 @@ if __name__ == "__main__":
         print('generating a new dataset...')
         alist = [random.randint(0, 99) for _ in range(1000000)]
         largest = max(alist)
+        # these will be redefined to the return value of the two algorithms
+        sorted1 = []
+        sorted2 = []
         print('sorting the same 1000000 element list of integers from 0 to 99:')
-        timer = Timer('counting_sort()', setup="from __main__ import counting_sort",globals=globals())
+        timer = Timer('test_counting_sort()', setup="from __main__ import test_counting_sort",globals=globals())
         print("   counting_sort:",timer.timeit(number=1))
-        timer2 = Timer('my_counting_sort()', setup="from __main__ import my_counting_sort",globals=globals())
+        timer2 = Timer('test_my_counting_sort()', setup="from __main__ import test_my_counting_sort",globals=globals())
         print("my_counting_sort:",timer2.timeit(number=1))
+        if sorted1 == sorted2:
+            print("the two sorted arrays are equal!")
+        else:
+            print("the two sorted arrays are different. Something went wrong...")
         input("press enter to run again, ctrl+c to quit (ctrl + f2 in PyCharm)")
